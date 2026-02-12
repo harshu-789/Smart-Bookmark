@@ -10,4 +10,13 @@ body {
   @apply bg-gray-50 text-gray-900;
 }
 
-.container { @apply max-w-3xl mx-auto p-6; }
+.container { 
+  @apply max-w-3xl mx-auto px-4 py-4 sm:p-6 md:p-8;
+}
+
+/* Mobile-first responsive utilities */
+@media (max-width: 640px) {
+  body {
+    @apply text-sm;
+  }
+}

@@ -33,32 +33,34 @@ export default function Page() {
   return (
     <main>
       <div className="space-y-6">
-        <section className="rounded-2xl bg-gradient-to-r from-indigo-600 to-pink-500 text-white p-8 shadow-xl">
-          <div className="flex items-center justify-between">
+        <section className="rounded-lg sm:rounded-2xl bg-gradient-to-r from-indigo-600 to-pink-500 text-white p-4 sm:p-6 md:p-8 shadow-xl">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight">
                 Smart Bookmark
               </h1>
-              <p className="mt-2 text-indigo-100 max-w-xl">
+              <p className="mt-2 text-sm sm:text-base text-indigo-100 max-w-xl">
                 Save and access your personal bookmarks instantly — private and
                 synchronized across tabs.
               </p>
             </div>
-            <div className="hidden md:block">
+            <div className="hidden md:block flex-shrink-0">
               <img
                 src="/bookmark-illustration.svg"
                 alt="bookmark"
-                className="w-36 h-36 opacity-90"
+                className="w-24 h-24 sm:w-28 sm:h-28 md:w-36 md:h-36 opacity-90"
               />
             </div>
           </div>
         </section>
 
-        <section className="bg-white rounded-lg shadow p-6">
+        <section className="bg-white rounded-lg sm:rounded-xl shadow p-4 sm:p-6">
           {!user ? (
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
               <div>
-                <h2 className="text-lg font-semibold">Get started</h2>
+                <h2 className="text-lg sm:text-xl font-semibold">
+                  Get started
+                </h2>
                 <p className="text-sm text-gray-500">
                   Sign in with Google to manage your bookmarks.
                 </p>
@@ -66,7 +68,7 @@ export default function Page() {
               <div>
                 <button
                   onClick={signIn}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded shadow hover:shadow-md"
+                  className="w-full sm:w-auto inline-flex items-center justify-center sm:justify-start gap-2 px-4 py-2 sm:py-2.5 bg-white border border-gray-200 rounded shadow hover:shadow-md transition-shadow"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +89,10 @@ export default function Page() {
               </div>
             </div>
           ) : (
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-xl font-semibold text-gray-700">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-100 flex items-center justify-center text-sm sm:text-xl font-semibold text-gray-700">
                     {user.user_metadata?.full_name
                       ? user.user_metadata.full_name
                           .split(" ")
@@ -106,10 +108,10 @@ export default function Page() {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="w-full sm:w-auto">
                   <button
                     onClick={signOut}
-                    className="px-3 py-1 border rounded text-sm"
+                    className="w-full sm:w-auto px-3 py-2 sm:py-1 border rounded text-sm hover:bg-gray-50 transition-colors"
                   >
                     Sign out
                   </button>
@@ -122,7 +124,7 @@ export default function Page() {
           )}
         </section>
 
-        <footer className="text-center text-sm text-gray-500">
+        <footer className="text-center text-xs sm:text-sm text-gray-500 px-2">
           Built with Next.js, Supabase & Tailwind — your bookmarks stay private.
         </footer>
       </div>

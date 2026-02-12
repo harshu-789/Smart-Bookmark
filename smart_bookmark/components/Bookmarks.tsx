@@ -9,11 +9,14 @@ export default function Bookmarks({ user }: { user: any }) {
     const handler = (e: any) => {
       const newBookmark = e?.detail;
       if (!newBookmark) return;
-      setBookmarks((s) => (s.find((b) => b.id === newBookmark.id) ? s : [newBookmark, ...s]));
+      setBookmarks((s) =>
+        s.find((b) => b.id === newBookmark.id) ? s : [newBookmark, ...s],
+      );
     };
 
     window.addEventListener("bookmark-added", handler as EventListener);
-    return () => window.removeEventListener("bookmark-added", handler as EventListener);
+    return () =>
+      window.removeEventListener("bookmark-added", handler as EventListener);
   }, []);
 
   useEffect(() => {
@@ -76,27 +79,29 @@ export default function Bookmarks({ user }: { user: any }) {
       {bookmarks.length === 0 && (
         <div className="text-gray-500">No bookmarks yet.</div>
       )}
-      <ul className="space-y-3">
+      <ul className="space-y-2 sm:space-y-3">
         {bookmarks.map((b) => (
           <li
             key={b.id}
-            className="flex justify-between items-start bg-white p-3 rounded shadow-sm"
+            className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 sm:gap-4 bg-white p-4 sm:p-4 rounded-lg sm:rounded-lg shadow-sm hover:shadow-md transition-shadow"
           >
-            <div>
+            <div className="flex-1 min-w-0">
               <a
                 href={b.url}
                 target="_blank"
                 rel="noreferrer"
-                className="font-medium text-blue-600"
+                className="font-medium text-blue-600 hover:text-blue-800 break-words text-sm sm:text-base"
               >
                 {b.title}
               </a>
-              <div className="text-sm text-gray-500">{b.url}</div>
+              <div className="text-xs sm:text-sm text-gray-500 break-all mt-1">
+                {b.url}
+              </div>
             </div>
-            <div>
+            <div className="w-full sm:w-auto">
               <button
                 onClick={() => del(b.id)}
-                className="text-sm text-red-600"
+                className="w-full sm:w-auto text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-3 py-1 rounded transition-colors"
               >
                 Delete
               </button>
